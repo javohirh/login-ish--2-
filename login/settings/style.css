@@ -116,18 +116,10 @@ label {
   font-size: 20px;
   font-weight: 500;
 }
-/* .ortasi {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  align-items: end;
-} */
-/* .prosta {
-  width: 100vw;
-} */
+
 .malumotlar-center {
   display: flex;
-  /* justify-content: space-around; */
+
   justify-content: center;
   gap: 50px;
   flex-direction: column;
@@ -152,7 +144,7 @@ p {
   border: 0;
   max-width: 400px;
   width: 100%;
-  /* width: 800px; */
+
   font-size: 20px;
   height: 50px;
   transition: 1s;
@@ -172,9 +164,9 @@ p {
   .malumotlar-right {
     margin: 0 auto;
   }
-
-  /* input,
-  .prosta {
-    width: 100%;
-  } */
+}
+@media only print {
+  .color {
+    display: none;
+  }
 }

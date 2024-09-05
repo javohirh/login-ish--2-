@@ -3,7 +3,7 @@ const password = document.querySelector("#yangi-parol");
 const btn = document.querySelector("#save");
 const id = sessionStorage.getItem("id");
 
-const API = `http://10.10.0.86:7070/api/v1/auth/${id}`;
+const API = `http://localhost:7070/api/v1/auth/${id}`;
 
 btn.addEventListener("click", (e) => {
   e.preventDefault();

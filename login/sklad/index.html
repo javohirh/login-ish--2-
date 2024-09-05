@@ -18,8 +18,17 @@
       src="https://kit.fontawesome.com/b76e356ba6.js"
       crossorigin="anonymous"
     ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
     <link rel="stylesheet" href="./style.css" />
-    <title>BOZOR</title>
+    <title>SKLAD</title>
   </head>
   <body>
     <div class="color">
@@ -42,11 +51,11 @@
                   d="M521.58 516.763v-472.816c250.725 22.642 450.175 222.092 472.817 472.817h-472.816zM918.229 593.091h-435.436c-21.963 0-39.769-17.805-39.769-39.769 0 0 0 0 0 0v-435.463c-222.914 20.121-397.682 207.273-397.682 435.436 0 241.605 195.898 437.452 437.451 437.451 228.163 0 415.339-174.715 435.436-397.657z"
                 />
               </svg></div></a
-          ><a href="#" class="bozor-a">
+          ><a href="../bozor/index.html" class="bozor-a">
             <div class="bozor">
               <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
               <svg
-                fill="yellow"
+                fill="#fff"
                 width="40px"
                 height="40px"
                 viewBox="0 0 1000 1000"
@@ -56,11 +65,11 @@
                   d="M891 308H340q-6 0-10.5-4t-5.5-10l-32-164q-2-14-12-22.5T256 99H110q-15 0-25.5 10.5T74 135v5q0 15 10.5 26t25.5 11h102q4 0 7 2.5t4 6.5l102 544q3 19 20 28 8 5 18 5h17q-22 25-21 58.5t25 56.5 57.5 23 58-23 25.5-56.5-22-58.5h186q-23 25-21.5 58.5T693 878t57.5 23 57.5-23 25-56.5-21-58.5h17q15 0 25.5-10.5T865 727v-8q0-15-11-25.5T828 683H409q-6 0-10.5-4t-5.5-9l-10-54q-1-8 4-14t12-5h460q13 0 22.5-8t11.5-21l33-219q3-16-7.5-28.5T891 308z"
                 />
               </svg></div></a
-          ><a href="../sklad/index.html" class="sklad-a">
+          ><a href="#" class="sklad-a">
             <div class="sklad">
               <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
               <svg
-                fill="#fff"
+                fill="yellow"
                 width="40px"
                 height="40px"
                 viewBox="0 -64 640 640"
@@ -129,24 +138,24 @@
       </div>
     </div>
     <div class="con seerch">
-      <h1 class="con search-title">BOZOR</h1>
-      <form class="example">
+      <h1 class="con search-title">SKLAD</h1>
+      <form id="form" class="example d-flex align-items-center">
         <div class="form-control">
           <input
             type="text"
-            placeholder="Search..."
-            name="search2"
+            placeholder="Balon nomi va razmeri"
+            name="search1"
             class="seerch-inp form-group"
-          /><i class="form-btn fa fa-search"></i>
+          />
         </div>
       </form>
+      <div class="footer">
+        <div class="con footer-content">
+          <h3>Jami Balon Soni: <span class="all-count">0</span></h3>
+          <h3>Jami Balon Narxi: <span class="all-price">0</span>$</h3>
+        </div>
+      </div>
     </div>
-    <!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button> -->
-
-    <!-- Modal -->
     <div
       class="modal fade"
       id="staticBackdrop"
@@ -170,51 +179,79 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form id="form">
-              <div class="input-group mb-3">
-                <input
-                  id="oluvchi"
-                  placeholder="Oluvchi"
-                  type="text"
-                  class="form-control bg-secondary-subtle"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-default"
-                />
-              </div>
+            <div class="input-group mb-3">
+              <input
+                id="nomi"
+                placeholder="Balon nomi va razmeri"
+                type="text"
+                class="form-control bg-secondary-subtle"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+              />
+            </div>
+
+            <div class="input-group mb-3">
+              <input
+                placeholder="Balonlar soni"
+                type="number"
+                id="soni"
+                class="form-control bg-secondary-subtle"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <input
+                placeholder="Narxi"
+                type="number"
+                id="narxi"
+                class="form-control bg-secondary-subtle"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="add-product"
+              data-bs-dismiss="modal"
+              type="button"
+              class="btn btn-primary"
+            >
+              Saqlash
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="edit-modal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Tahrirlash
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="edit-form">
               <div class="input-group mb-3">
                 <input
                   id="nomi"
-                  placeholder="Balon nomi"
-                  type="text"
-                  class="form-control bg-secondary-subtle"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-default"
-                />
-              </div>
-              <div class="input-group mb-3">
-                <input
-                  id="soni"
-                  placeholder="Razmeri"
-                  type="text"
-                  class="form-control bg-secondary-subtle"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-default"
-                />
-              </div>
-              <div class="input-group mb-3">
-                <input
-                  id="narxi"
-                  placeholder="Balonlar soni"
-                  type="text"
-                  class="form-control bg-secondary-subtle"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-default"
-                />
-              </div>
-              <div class="input-group mb-3">
-                <input
-                  id="tannarxi"
-                  placeholder="Narxi"
+                  placeholder="Balon nomi va razmeri"
                   type="text"
                   class="form-control bg-secondary-subtle"
                   aria-label="Sizing example input"
@@ -222,18 +259,73 @@
                 />
               </div>
 
-              <div class="modal-footer">
-                <button
-                  id="add-product"
-                  type="button"
-                  class="btn btn-primary"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                >
-                  Saqlash
-                </button>
+              <div class="input-group mb-3">
+                <input
+                  placeholder="Balonlar soni"
+                  type="number"
+                  id="soni"
+                  class="form-control bg-secondary-subtle"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-default"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <input
+                  placeholder="Narxi"
+                  type="number"
+                  id="narxi"
+                  class="form-control bg-secondary-subtle"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-default"
+                />
               </div>
             </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="edit-product"
+              data-bs-dismiss="modal"
+              type="button"
+              class="btn btn-primary"
+            >
+              Saqlash
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="print"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Tahrirlash
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              id="edit-product"
+              data-bs-dismiss="modal"
+              type="button"
+              class="btn btn-primary"
+            >
+              Saqlash
+            </button>
           </div>
         </div>
       </div>
@@ -242,12 +334,13 @@
     <table class="con">
       <thead>
         <tr>
-          <th>Oluvchi</th>
-          <th>Balon nomi</th>
-          <th>Razmeri</th>
-          <th>Balonlar soni</th>
+          <th>Balon nomi va razmeri</th>
+
+          <th>Balon Soni</th>
           <th>Narxi</th>
+          <th>Jami Narxi</th>
           <th>Vaqti</th>
+          <th>O'zgarish</th>
           <th>
             <button
               class="add-btn"
@@ -265,82 +358,27 @@
           <tr>
             <td>Cleveland</td>
             <td>Brown</td>
-            <td>25</td>
+            <td>13345</td>
+            <td>13345</td>
+            <td>$250</td>
             <td>$250</td>
 
-            <td>200$</td>
-            <td>12:13</td>
             <td class="btn-edit">
-              <button class="edit-btn">
-                <svg
-                  class="edit"
-                  fill="#000000"
-                  width="30px"
-                  height="30px"
-                  viewBox="0 0 16 16"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></g>
-                  <g id="SVGRepo_iconCarrier">
-                    <path
-                      d="M15.49 7.3h-1.16v6.35H1.67V3.28H8V2H1.67A1.21 1.21 0 0 0 .5 3.28v10.37a1.21 1.21 0 0 0 1.17 1.25h12.66a1.21 1.21 0 0 0 1.17-1.25z"
-                    ></path>
-                    <path
-                      d="M10.56 2.87 6.22 7.22l-.44.44-.08.08-1.52 3.16a1.08 1.08 0 0 0 1.45 1.45l3.14-1.53.53-.53.43-.43 4.34-4.36.45-.44.25-.25a2.18 2.18 0 0 0 0-3.08 2.17 2.17 0 0 0-1.53-.63 2.19 2.19 0 0 0-1.54.63l-.7.69-.45.44zM5.51 11l1.18-2.43 1.25 1.26zm2-3.36 3.9-3.91 1.3 1.31L8.85 9zm5.68-5.31a.91.91 0 0 1 .65.27.93.93 0 0 1 0 1.31l-.25.24-1.3-1.3.25-.25a.88.88 0 0 1 .69-.25z"
-                    ></path>
-                  </g>
-                </svg></button
+              <button
+                class="edit-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#edit-modal"
+              >
+                <i class="edit fa-regular fa-pen-to-square"></i></button
               ><button class="delete-btn">
-                <svg
-                  width="30px"
-                  class="delete"
-                  height="30px"
-                  viewBox="-0.5 0 19 19"
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
-                  fill="#ff0000"
-                  stroke="#ff0000"
-                >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></g>
-                  <g id="SVGRepo_iconCarrier">
-                    <title>icon/18/icon-delete</title>
-                    <desc>Created with Sketch.</desc>
-                    <defs></defs>
-                    <g
-                      id="out"
-                      stroke="none"
-                      stroke-width="1"
-                      fill="none"
-                      fill-rule="evenodd"
-                      sketch:type="MSPage"
-                    >
-                      <path
-                        d="M4.91666667,14.8888889 C4.91666667,15.3571429 5.60416667,16 6.0625,16 L12.9375,16 C13.3958333,16 14.0833333,15.3571429 14.0833333,14.8888889 L14.0833333,6 L4.91666667,6 L4.91666667,14.8888889 L4.91666667,14.8888889 L4.91666667,14.8888889 Z M15,3.46500003 L12.5555556,3.46500003 L11.3333333,2 L7.66666667,2 L6.44444444,3.46500003 L4,3.46500003 L4,4.93000007 L15,4.93000007 L15,3.46500003 L15,3.46500003 L15,3.46500003 Z"
-                        id="path"
-                        fill="black"
-                        sketch:type="MSShapeGroup"
-                      ></path>
-                    </g>
-                  </g>
-                </svg>
+                <i class="delete fa-solid fa-trash"></i>
               </button>
             </td>
           </tr>
         </template>
       </tbody>
     </table>
-    <script src="./bozor.js"></script>
+
+    <script src="./sklad.js"></script>
   </body>
 </html>

@@ -1,107 +1,95 @@
-body::-webkit-scrollbar {
-  width: 6px;
-}
-
-body::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(222, 64, 64, 0.3);
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: rgb(193, 196, 196);
-  outline: 1px solid rgb(255, 255, 255);
-  border-radius: 24px;
-}
-
-h1 {
-  color: #333333;
-}
-.date {
-  display: flex;
-  gap: 40px;
-}
-input {
-}
-.stat {
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-label {
-  font-weight: 800;
-  margin-left: 5px;
-}
-select {
-  width: 100px;
-  height: 20px;
-  margin-left: 6px;
-}
-canvas {
-  margin: 0 auto;
-  max-width: 100% !important;
-  height: 50% !important;
-}
-.flex-right {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-.color {
-  background: black;
-  color: #fff;
-  position: fixed;
-  width: 100%;
-  padding: 20px 0;
-  font-size: 24px;
-}
-.con {
-  max-width: 1240px;
-  padding: 0 20px;
-  margin: 0 auto;
-}
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: auto;
+  box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-  color: #fff;
+body {
+  background-color: #34370e50;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 0 30px;
+}
+form {
+  border: 3px solid #f1f1f1;
+  background-color: #fff;
+  transition: 0.5s;
+  &:hover {
+    box-shadow: 0px 0px 30px #34370e80;
+  }
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
   transition: 1s;
-  &:hover svg {
-    transform: scale(1.5);
-    fill: yellow;
-    transition: 1s;
+  margin-bottom: 20px;
+  &:hover {
+    background-color: #0e371350;
+  }
+  &:focus {
+    background-color: #0e371350;
   }
 }
-.past {
-  padding: 150px;
+
+button {
+  background-color: #000000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+
+  margin-bottom: 20px;
+  transition: 1s;
 }
 
-@media only screen and (max-width: 750px) {
-  h1,
-  label {
-    display: none;
-  }
-  .past {
-    padding: 0;
-    padding-top: 100px;
-  }
+button:hover {
+  opacity: 0.5;
+}
 
-  .date {
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
     width: 100%;
-    justify-content: space-between;
-  }
-  #myChart {
-    width: 150%;
-    margin-top: 150px;
   }
 }
