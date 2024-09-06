@@ -7,7 +7,7 @@ const elEditProduct = document.querySelector("#edit-product");
 const balonNomi = document.querySelector("#nomi");
 const balonSoni = document.querySelector("#soni");
 const balonNarxi = document.querySelector("#narxi");
-
+const token = localStorage.getItem("token");
 const form = document.getElementById("form");
 const searchBalonNomi = document.getElementById("form").search1;
 const searchRazmeri = document.getElementById("form").search2;
@@ -19,13 +19,14 @@ const elEditNarxi = document.getElementById("edit-form").narxi;
 const elAllPrice = document.querySelector(".all-price");
 const elAllCount = document.querySelector(".all-count");
 
-const API = "http://localhost:7070/api/sklad";
+const API = "http://api.power007.uz/api/sklad";
 
 elSaveBtn.addEventListener("click", (e) => {
   e.preventDefault();
   fetch(API, {
     method: "POST",
     headers: {
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -99,7 +100,11 @@ function renderProduct(array, parent = elParent) {
   elAllPrice.textContent = b;
 }
 function getData() {
-  fetch(API)
+  fetch(API, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
     .then((res) => res.json())
     .then((data) => {
       renderProduct(data.data);
@@ -109,7 +114,11 @@ getData();
 
 searchBalonNomi.addEventListener("input", (e) => {
   e.preventDefault();
-  fetch(`${API}/filter?balon=${searchBalonNomi.value}`)
+  fetch(`${API}/filter?balon=${searchBalonNomi.value}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
     .then((res) => res.json())
     .then((data) => renderProduct(data));
   if (searchBalonNomi.value == "") {
@@ -120,7 +129,11 @@ searchBalonNomi.addEventListener("input", (e) => {
 elParent.addEventListener("click", (e) => {
   if (e.target.parentElement.classList.contains("edit-btn")) {
     const id = e.target.parentElement.dataset.id;
-    fetch(`${API}/${id}`)
+    fetch(`${API}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         elEditBalon.value = data.data.balon;
@@ -134,6 +147,7 @@ elParent.addEventListener("click", (e) => {
           fetch(`${API}/${id}`, {
             method: "PATCH",
             headers: {
+              Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
@@ -154,6 +168,9 @@ elParent.addEventListener("click", (e) => {
   if (e.target.parentElement.classList.contains("delete-btn")) {
     const id = e.target.parentElement.dataset.id;
     fetch(`${API}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       method: "DELETE",
     })
       .then((res) => res.json())

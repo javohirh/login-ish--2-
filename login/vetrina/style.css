@@ -113,9 +113,9 @@ button {
     background-color: #00000050;
   }
 }
-/* tr:hover .delete path {
-  fill: black;
-} */
+tr:nth-child(even) {
+  background-color: #0000000f;
+}
 tr:hover td i {
   transform: scale(1);
 }

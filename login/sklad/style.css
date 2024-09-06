@@ -45,11 +45,11 @@ body {
   background-color: #000000;
 }
 .footer-content {
-  padding: 10px 0px;
+  padding: 8px 0px;
   color: #fff;
   display: flex;
-  align-items: center;
-  gap: 80px;
+  flex-direction: column;
+  align-items: start;
 }
 
 .nav {
@@ -81,6 +81,9 @@ td {
   text-align: left;
   border-bottom: 1px solid #ddd;
   text-align: center;
+}
+tr:nth-child(even) {
+  background-color: #0000000f;
 }
 th {
   font-size: 20px;
@@ -168,9 +171,7 @@ tr:hover td .delete {
     padding-top: 110px;
     margin: 0 auto;
   }
-  .footer-content {
-    gap: 40px;
-  }
+
   h3 {
     padding-left: 5px;
     font-size: 15px;

@@ -1,7 +1,7 @@
 const user = document.querySelector("#user");
 const password = document.querySelector("#password");
 const btnlogin = document.querySelector("#btnlogin");
-const API = "http://localhost:7070/api/v1/auth/login";
+const API = "http://api.power007.uz/api/v1/auth/login";
 btnlogin.addEventListener("click", (e) => {
   e.preventDefault();
   fetch(API, {
@@ -15,15 +15,15 @@ btnlogin.addEventListener("click", (e) => {
     }),
   })
     .then((response) => {
-      if (response.status >= 200 && response.status < 300) {
-        window.location.replace("./login/index.html");
-      }
-
       return response.json();
     })
     .then((data) => {
       sessionStorage.setItem("id", data.id);
+      localStorage.setItem("token", data.data);
+      console.log(data);
+
       if (!data.statusCode) {
+        window.location.replace("./login/index.html");
         showMessage("Tizimga muvaffaqiyatli kirildi !!!");
       } else {
         showMessage(data.message, 3000, "red");

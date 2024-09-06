@@ -2,8 +2,10 @@ const username = document.querySelector(".ra1");
 const password = document.querySelector("#yangi-parol");
 const btn = document.querySelector("#save");
 const id = sessionStorage.getItem("id");
+const logOut = document.getElementById("log-out");
+const token = localStorage.getItem("token");
 
-const API = `http://localhost:7070/api/v1/auth/${id}`;
+const API = `http://api.power007.uz/api/v1/auth/${id}`;
 
 btn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -11,6 +13,7 @@ btn.addEventListener("click", (e) => {
     fetch(API, {
       method: "PATCH",
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -39,4 +42,7 @@ btn.addEventListener("click", (e) => {
   }
   username.value = "";
   password.value = "";
+});
+logOut.addEventListener("click", () => {
+  localStorage.removeItem("token");
 });

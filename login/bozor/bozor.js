@@ -16,10 +16,15 @@ const searchBalonNomi = document.getElementById("form").search1;
 const searchRazmeri = document.getElementById("form").search2;
 const elAllPrice = document.querySelector(".all-price");
 const elAllCount = document.querySelector(".all-count");
-const API = "http://localhost:7070/api/bozor";
+const token = localStorage.getItem("token");
+const API = "http://api.power007.uz/api/bozor";
 
 function getData() {
-  fetch(API)
+  fetch(API, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
     .then((res) => res.json())
     .then((data) => {
       renderProduct(data.data);
@@ -32,6 +37,7 @@ elSaveBtn.addEventListener("click", (e) => {
   fetch(API, {
     method: "POST",
     headers: {
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -108,7 +114,11 @@ elParent.addEventListener("click", (e) => {
     const id = e.target.parentElement.dataset.id;
     console.log(id);
 
-    fetch(`${API}/${id}`)
+    fetch(`${API}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -127,6 +137,7 @@ elParent.addEventListener("click", (e) => {
           fetch(`${API}/${id}`, {
             method: "PATCH",
             headers: {
+              Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
@@ -153,6 +164,9 @@ elParent.addEventListener("click", (e) => {
   if (e.target.parentElement.classList.contains("delete-btn")) {
     const id = e.target.parentElement.dataset.id;
     fetch(`${API}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -166,7 +180,11 @@ elParent.addEventListener("click", (e) => {
 
 searchBalonNomi.addEventListener("input", (e) => {
   e.preventDefault();
-  fetch(`${API}/filterDate?balon=${searchBalonNomi.value}`)
+  fetch(`${API}/filterDate?balon=${searchBalonNomi.value}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
     .then((res) => res.json())
     .then((data) => renderProduct(data));
   if (searchBalonNomi.value == "") {
@@ -176,7 +194,12 @@ searchBalonNomi.addEventListener("input", (e) => {
 
 searchOluvchi.addEventListener("input", (e) => {
   fetch(
-    `${API}/filterDate?balon=${searchBalonNomi.value}&oluvchi=${searchOluvchi.value}`
+    `${API}/filterDate?balon=${searchBalonNomi.value}&oluvchi=${searchOluvchi.value}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   )
     .then((res) => res.json())
     .then((data) => renderProduct(data));
